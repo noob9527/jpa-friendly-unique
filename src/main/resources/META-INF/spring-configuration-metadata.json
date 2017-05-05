@@ -1,0 +1,30 @@
+{
+  "groups": [{
+    "name": "spring.data.jpa.helper",
+    "type": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties",
+    "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
+  }],
+  "properties": [
+    {
+      "name": "spring.data.jpa.helper.batch-size",
+      "type": "java.lang.Integer",
+      "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
+    },
+    {
+      "name": "spring.data.jpa.helper.enable-jpa-u-q-annotation",
+      "type": "java.lang.Boolean",
+      "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
+    },
+    {
+      "name": "spring.data.jpa.helper.jpa-annotation-constraint",
+      "type": "java.lang.Boolean",
+      "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
+    },
+    {
+      "name": "spring.data.jpa.helper.jpa-annotation-identity",
+      "type": "java.lang.Boolean",
+      "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
+    }
+  ],
+  "hints": []
+}
