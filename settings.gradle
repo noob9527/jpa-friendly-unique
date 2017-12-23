@@ -1,4 +1,5 @@
 rootProject.name='spring-data-jpa-helper'
 
 include 'demo'
+include 'javademo'
 

@@ -44,10 +44,10 @@ fun extractIdentityUQ(clazz: KClass<*>): List<UQ> {
             .jpaHelperProperties
     val result = extractUniqueConstraint(clazz)
             .filter { it.isIdentity }
-            .sortedBy { it.queryPriority }
+            .sortedBy { -it.queryPriority }
             .map { it.fields }
             .toList()
-    return if (properties.enableJpaUQAnnotation && properties.jpaAnnotationIdentity) {
+    return if (properties.enableJpaUqAnnotation && properties.jpaAnnotationIdentity) {
         result + extractUQByJpaAnnotation(clazz)
     } else {
         result
@@ -61,7 +61,7 @@ fun extractValidationUQ(clazz: KClass<*>): Set<UQ> {
             .filter { it.isConstraint }
             .map { it.fields }
             .toSet()
-    return if (properties.enableJpaUQAnnotation && properties.jpaAnnotationConstraint) {
+    return if (properties.enableJpaUqAnnotation && properties.jpaAnnotationConstraint) {
         result + extractUQByJpaAnnotation(clazz)
     } else {
         result

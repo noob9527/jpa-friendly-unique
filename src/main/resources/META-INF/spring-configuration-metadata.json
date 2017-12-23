@@ -11,7 +11,7 @@
       "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
     },
     {
-      "name": "spring.data.jpa.helper.enable-jpa-u-q-annotation",
+      "name": "spring.data.jpa.helper.enable-jpa-uq-annotation",
       "type": "java.lang.Boolean",
       "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
     },

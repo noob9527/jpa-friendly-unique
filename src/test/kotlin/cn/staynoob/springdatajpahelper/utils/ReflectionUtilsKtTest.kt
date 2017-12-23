@@ -74,15 +74,15 @@ class ReflectionUtilsKtTest {
     )
 
     @FriendlyUnique([
-        CompositeUnique(["bar"], queryPriority = 2),
-        CompositeUnique(["foo"], queryPriority = 1)
+        CompositeUnique(["bar"], queryPriority = 3),
+        CompositeUnique(["foo"], queryPriority = 4)
     ])
     data class QueryPrioritySample(
             val foo: String? = null,
             val bar: String? = null,
-            @Unique(queryPriority = 4)
+            @Unique(queryPriority = 1)
             val qux: String? = null,
-            @Unique(queryPriority = 3)
+            @Unique(queryPriority = 2)
             val baz: String? = null
     )
 

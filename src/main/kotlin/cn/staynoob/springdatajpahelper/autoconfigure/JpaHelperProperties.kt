@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
  */
 @ConfigurationProperties(prefix = "spring.data.jpa.helper")
 data class JpaHelperProperties(
-        var enableJpaUQAnnotation: Boolean = false,
+        var enableJpaUqAnnotation: Boolean = false,
         var jpaAnnotationConstraint: Boolean = true,
         var jpaAnnotationIdentity: Boolean = true,
         var batchSize: Int = 50

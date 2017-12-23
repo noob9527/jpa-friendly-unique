@@ -2,20 +2,26 @@ package cn.staynoob.springdatajpahelper.annotation
 
 
 /**
- * 在单个属性上标识唯一约束
+ * Singular Column Unique Constraint
  */
-@Target(AnnotationTarget.PROPERTY)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 annotation class Unique(
         /**
-         * 决定作为 exists 方法的判断条件
+         * Indicates if jpa-helper will use it in `exists` and `findByUQ` methods
          */
         val isIdentity: Boolean = true,
         /**
-         * 决定是否要在保存数据前根据该注解做唯一检查
+         * Indicates if jpa-helper will do uniqueCheck for you
          */
         val isConstraint: Boolean = true,
         /**
-         * exists 查询优先级
+         * exists query priority
+         * consider an entity has two unique key
+         * class SomeEntity (@Unique val foo:String?=null, @Unique val bar:String?=null)
+         * and db already have two records ("aaa", null), (null, "bbb")
+         * then you try to findByUQ(SomeEntity("aaa", "bbb"))
+         * this property indicated which entity you will be returned
+         * findByUQ will use the larger priority UQ at first
          */
         val queryPriority: Int = 0
 )
