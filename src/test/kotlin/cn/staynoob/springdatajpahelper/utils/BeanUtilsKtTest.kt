@@ -9,7 +9,11 @@ class BeanUtilsKtTest {
             var name: String? = null,
             var age: Int = 0,
             var bar: Bar? = null
-    )
+    ) {
+        val readOnly: String
+            get() = throw Exception("shouldn't be invoke!")
+    }
+
     data class Bar(
             var name: String? = null
     )
@@ -37,6 +41,13 @@ class BeanUtilsKtTest {
     }
 
     @Test
+    @DisplayName("should ignore readonly method")
+    fun mergeTest50() {
+        assertThat(getIgnoreProperties(Foo()))
+                .contains(Foo::readOnly.name)
+    }
+
+    @Test
     @DisplayName("merge should ignore null properties")
     fun mergeTest100() {
         val src = Foo(null, 1)
@@ -56,4 +67,5 @@ class BeanUtilsKtTest {
         assertThat(target.age).isEqualTo(1)
         assertThat(target.bar).isNotNull()
     }
+
 }

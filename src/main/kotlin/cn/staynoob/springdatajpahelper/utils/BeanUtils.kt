@@ -21,7 +21,7 @@ fun <T : Any> copy(src: T, target: T, vararg ignore: KProperty<*>) {
  */
 fun <T : Any> merge(src: T, target: T, vararg ignore: KProperty<*>) {
     val ignoreProperties = (ignore.map { it.name }.toSet()
-            + getNullProperties(src)).toTypedArray()
+            + getIgnoreProperties(src)).toTypedArray()
     copy(src, target, *ignoreProperties)
 }
 
@@ -33,11 +33,18 @@ fun <T : Any> copy(src: T, target: T, vararg ignore: String) {
     BeanUtils.copyProperties(src, target, *ignore)
 }
 
-private fun getNullProperties(entity: Any): Set<String> {
+/**
+ * should ignore:
+ * - readonly property
+ * - null property
+ */
+internal fun getIgnoreProperties(entity: Any): Set<String> {
     val wrapper = BeanWrapperImpl(entity)
-    return wrapper.propertyDescriptors
-            .map { it.name }
-            .filter { wrapper.getPropertyValue(it) == null }
-            .toSet()
+    val (writable, unWritable) = wrapper.propertyDescriptors
+            .partition { it.writeMethod != null }
+    return unWritable.map { it.name }.toSet() +
+            writable.map { it.name }
+                    .filter { wrapper.getPropertyValue(it) == null }
+                    .toSet()
 }
 
