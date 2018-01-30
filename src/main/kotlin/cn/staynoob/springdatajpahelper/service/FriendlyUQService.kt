@@ -1,8 +1,12 @@
 package cn.staynoob.springdatajpahelper.service
 
 import cn.staynoob.springdatajpahelper.exception.DuplicatedEntityException
-import cn.staynoob.springdatajpahelper.utils.*
+import cn.staynoob.springdatajpahelper.utils.AbstractEntityMetaModel
+import cn.staynoob.springdatajpahelper.utils.PropertyEntry
+import cn.staynoob.springdatajpahelper.utils.extractIdentityUQ
+import cn.staynoob.springdatajpahelper.utils.extractValidationUQ
 import javax.persistence.EntityManager
+import javax.persistence.NoResultException
 
 @Suppress("LoopToCallChain")
 class FriendlyUQService<in T : Any>(
@@ -67,6 +71,10 @@ class FriendlyUQService<in T : Any>(
                 .map { cb.equal(root.get<T>(it.first), it.second) }
                 .toSet()
         query.where(*set.toTypedArray())
-        return entityManager.createQuery(query).singleResult
+        return try {
+            entityManager.createQuery(query).singleResult
+        } catch (e: NoResultException) {
+            null
+        }
     }
 }

@@ -40,7 +40,7 @@ class JpaHelperRepositoryImpl<T : Any, ID : Serializable>(
     @Suppress("UNCHECKED_CAST")
     override fun <S : T> findByUQ(entity: S): S? {
         val id = entityInformation.getId(entity) as ID?
-        return if (id != null) findOne(id) as S
+        return if (id != null) findOne(id) as S?
         else friendlyUQService.findByUQ(entity)
     }
 

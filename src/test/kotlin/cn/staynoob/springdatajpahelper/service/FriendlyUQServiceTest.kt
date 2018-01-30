@@ -42,4 +42,11 @@ class FriendlyUQServiceTest : RepoTest() {
         assertThat(res).isNotNull()
         assertThat(res).isEqualTo(sample1)
     }
+
+    @Test
+    @DisplayName("basic findByUQ not exist should return null")
+    fun findByUQTest200() {
+        val res = friendlyUQService.findByUQ(UniqueSample("1"))
+        assertThat(res).isNull()
+    }
 }
