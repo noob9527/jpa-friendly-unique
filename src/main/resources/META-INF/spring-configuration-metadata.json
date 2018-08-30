@@ -6,6 +6,11 @@
   }],
   "properties": [
     {
+      "name": "spring.data.jpa.helper.autoconfigure-repository-impl",
+      "type": "java.lang.Boolean",
+      "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
+    },
+    {
       "name": "spring.data.jpa.helper.batch-size",
       "type": "java.lang.Integer",
       "sourceType": "cn.staynoob.springdatajpahelper.autoconfigure.JpaHelperProperties"
